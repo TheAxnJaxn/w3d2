@@ -18,7 +18,8 @@ class Question
   end
 
   def initialize(options)
-    @id, @title, @body, @author_id = options['id'], options['title'], options['body'], options['author_id']
+    @id, @title, @body, @author_id =
+      options['id'], options['title'], options['body'], options['author_id']
   end
 
   def self.find_by_author_id(author_id)
@@ -52,5 +53,9 @@ class Question
 
   def followers
     QuestionFollow.followers_for_question_id(@id)
+  end
+
+  def self.most_followed(n)
+    QuestionFollow.most_followed_questions(n)
   end
 end

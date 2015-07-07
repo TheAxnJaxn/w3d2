@@ -18,7 +18,11 @@ class Reply
   end
 
   def initialize(options)
-    @id, @question_id, @parent_reply_id, @user_id, @body = options['id'], options['question_id'], options['parent_reply_id'], options['user_id'], options['body']
+    @id = options['id']
+    @question_id = options['question_id']
+    @parent_reply_id = options['parent_reply_id']
+    @user_id = options['user_id']
+    @body = options['body']
   end
 
   def self.find_by_user_id(user_id)
