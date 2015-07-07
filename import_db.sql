@@ -37,8 +37,8 @@ DROP TABLE IF EXISTS question_likes;
 
 CREATE TABLE question_likes(
   id INTEGER PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id) NOT NULL,
-  question_id INTEGER REFERENCES questions(id) NOT NULL
+  question_id INTEGER REFERENCES questions(id) NOT NULL,
+  user_id INTEGER REFERENCES users(id) NOT NULL
 );
 
 INSERT INTO
