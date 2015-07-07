@@ -12,15 +12,15 @@ CREATE TABLE questions(
   id INTEGER PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   body VARCHAR NOT NULL,
-  author_id INTEGER REFERENCES users(id)
+  author_id INTEGER REFERENCES users(id) NOT NULL
 );
 
 DROP TABLE IF EXISTS question_follows;
 
 CREATE TABLE question_follows(
   id INTEGER PRIMARY KEY,
-  question_id INTEGER REFERENCES questions(id),
-  user_id INTEGER REFERENCES users(id)
+  question_id INTEGER REFERENCES questions(id) NOT NULL,
+  user_id INTEGER REFERENCES users(id) NOT NULL
 );
 
 DROP TABLE IF EXISTS replies;

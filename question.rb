@@ -36,13 +36,13 @@ class Question
     author_id = @author_id
     options = QuestionsDatabase.get_first_row(<<-SQL, author_id)
       SELECT
-        (fname || " " || lname) full_name
+        *
       FROM
         users
       WHERE
         id = ?
     SQL
-    options["full_name"]
+    User.new(options)
   end
 
   def replies
