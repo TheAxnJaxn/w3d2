@@ -1,0 +1,28 @@
+class User
+  attr_accessor :id, :fname, :lname
+
+  def self.find_by_id(id)
+    options = QuestionsDatabase.instance.get_first_row(<<-SQL, id)
+      SELECT
+        *
+      FROM
+        users
+      WHERE
+        id = ?
+    SQL
+    User.new(options)
+  end
+
+  def self.find_by_name(fname, lname)
+    options = QuestionsDatabase.instance.execute(<<-SQL, fname, lname)
+    SELECT *
+    FROM users
+    WHERE fname = ? AND lname = ?
+    SQL
+    User.new(options.first)
+  end
+
+  def initialize(options)
+    @id, @fname, @lname = options['id'], options['fname'], options['lname']
+  end
+end
