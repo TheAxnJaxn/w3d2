@@ -64,6 +64,7 @@ INSERT INTO
   replies(question_id, parent_reply_id, user_id, body)
 VALUES
   ((SELECT id FROM questions WHERE title = 'Question 1'), NULL, (SELECT id FROM users WHERE fname = "Eric"), "This question is good."),
+  ((SELECT id FROM questions WHERE title = 'Question 2'), NULL, (SELECT id FROM users WHERE fname = "Eric"), "This question is also good."),
   ((SELECT id FROM questions WHERE title = 'Question 1'), 1, (SELECT id FROM users WHERE fname = "Krista"), "I second that opinion!");
 
 INSERT INTO

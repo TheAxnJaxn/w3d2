@@ -20,7 +20,7 @@ class Question
   end
 
   def self.find_by_author_id(author_id)
-    options = QuestionsDatabase.get_first_row(<<-SQL, author_id)
+    options = QuestionsDatabase.instance.execute(<<-SQL, author_id)
       SELECT
         *
       FROM
@@ -28,6 +28,6 @@ class Question
       WHERE
         author_id = ?
     SQL
-    Question.new(options)
+    options.map { |row_hash| Question.new(row_hash) }
   end
 end
