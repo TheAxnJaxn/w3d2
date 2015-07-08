@@ -31,18 +31,18 @@ class User
   end
 
   def initialize(options)
-    @id, @fname, @lname = options[:id], options[:fname], options[:lname]
+    @id, @fname, @lname = options['id'], options['fname'], options['lname']
   end
 
   def save
-    debugger
     raise 'already in database!' unless self.id.nil?
 
-    QuestionsDatabase.instance.execute(<<-SQL, fname: @fname, lname: @lname)
+    fname, lname = @fname, @lname
+    QuestionsDatabase.instance.execute(<<-SQL, fname, lname)
       INSERT INTO
         users (fname, lname)
       VALUES
-        (:fname, :lname)
+        (?, ?)
     SQL
 
     @id = QuestionsDatabase.instance.last_insert_row_id
